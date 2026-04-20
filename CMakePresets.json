@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "debug",
+      "displayName": "Debug Configure",
+      "description": "Configure project for Debug builds",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_C_FLAGS": "-O0 -g",
+        "CMAKE_CXX_FLAGS": "-O0 -g"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Release Configure",
+      "description": "Configure project for Release builds",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_C_FLAGS": "-O3",
+        "CMAKE_CXX_FLAGS": "-O3"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "displayName": "Debug Build",
+      "description": "Build using the debug configure preset with max parallelism",
+      "configurePreset": "debug",
+      "configuration": "Debug",
+      "jobs": 6
+    },
+    {
+      "name": "release",
+      "displayName": "Release Build",
+      "description": "Build using the release configure preset with max parallelism",
+      "configurePreset": "release",
+      "configuration": "Release",
+      "jobs": 6
+    }
+  ]
+}

@@ -7,9 +7,9 @@
 
 // Global angle offset
 //
-// To make working with the time and angle of the hands, this angle
-// offset is applied to all angle measurements to shift 0 degrees to
-// be full vertical (12 o'clock position). To make things consistent,
+// To make working with the time and angle of the hands easier, this
+// angle offset is applied to all angle measurements to shift 0 degrees
+// to be full vertical (12 o'clock position). To make things consistent,
 // the offset should be applied at the point nearest drawing.
 static const float DEG_ANGLE_OFFSET = -90.0f;
 

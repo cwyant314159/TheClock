@@ -7,14 +7,14 @@ extern "C" {
 
 #include "Clock.hpp"
 
-static std::chrono::hh_mm_ss<std::chrono::seconds> GetCurrentTime(std::optional<const std::chrono::time_zone*> timeZone = std::nullopt)
+static std::chrono::hh_mm_ss<std::chrono::milliseconds> GetCurrentTime(std::optional<const std::chrono::time_zone*> timeZone = std::nullopt)
 {
     using namespace std::chrono;
     
-    // Lambda to compute the time duration in seconds since midnight
+    // Lambda to compute the time duration in milliseconds since midnight
     const auto TimeSinceMidnight = [](auto timePoint) -> auto {
         const auto midnight = floor<days>(timePoint);
-        return duration_cast<seconds>(timePoint - midnight);
+        return duration_cast<milliseconds>(timePoint - midnight);
     };
 
     // Get the current system time point (UTC)

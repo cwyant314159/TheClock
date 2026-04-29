@@ -1,2 +1,2 @@
-add_subdirectory(c-clock)
-add_subdirectory(c++clock)
+add_subdirectory(clock)
+add_subdirectory(prototype)

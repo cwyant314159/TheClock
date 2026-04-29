@@ -1,41 +1,12 @@
-#include <chrono>
-#include <optional>
+#include <memory>
 
 extern "C" {
     #include <raylib.h>
 }
 
 #include "clocks/compound_clock.hpp"
+#include "time_sources/local_time_source.hpp"
 #include "utils/time_point.hpp"
-
-static Utils::TimePoint GetCurrentTime()
-{
-    using namespace std::chrono;
-
-    const time_zone* tz = std::chrono::current_zone();
-
-    // Lambda to compute the time duration in milliseconds since midnight
-    const auto TimeSinceMidnight = [](auto timePoint) -> auto {
-        const auto midnight = floor<days>(timePoint);
-        return duration_cast<milliseconds>(timePoint - midnight);
-    };
-
-    // Get the current system time point (UTC)
-    const auto now_sys = system_clock::now();
-
-    // Compute the local time using the timezone
-    const auto localTime = zoned_time{tz, now_sys}.get_local_time();
-
-    // Compute time components as a duration since midnight
-    const auto timeComponents = hh_mm_ss{ TimeSinceMidnight(localTime) };
-
-    return Utils::TimePoint{
-        timeComponents.hours().count(),
-        timeComponents.minutes().count(),
-        timeComponents.seconds().count(),
-        timeComponents.subseconds().count()
-    };
-}
 
 int main(void)
 {
@@ -49,21 +20,21 @@ int main(void)
 
     const float radius = (height / 2.0f) * 0.9f;
 
-    CompoundClock cc{ center, radius };
-
-    
+    std::unique_ptr<IClock> pClock   = std::make_unique<CompoundClock>(center, radius);
+    std::unique_ptr<ISource> pSource = std::make_unique<LocalTimeSource>();
 
     SetTargetFPS(60);
+    SetConfigFlags(FLAG_MSAA_4X_HINT);
     InitWindow(width, height, "Clock Application");
 
     while (!WindowShouldClose())
     {
-        const auto now = GetCurrentTime();
-        cc.Update(now);
+        const auto now = pSource->Now();
+        pClock->Update(now);
 
         BeginDrawing();
             ClearBackground(BLACK);
-            cc.Draw();
+            pClock->Draw();
             DrawFPS(5, 5);
         EndDrawing();
     }

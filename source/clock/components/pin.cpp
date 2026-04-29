@@ -9,5 +9,5 @@ Pin::Pin(const Vector2& origin, float radius, Color color)
 
 void Pin::Draw() const
 {
-    DrawCircleV(m_origin, m_radius, m_color);
+    DrawCircleSector(m_origin, m_radius, 0, 360, 90, m_color);
 }

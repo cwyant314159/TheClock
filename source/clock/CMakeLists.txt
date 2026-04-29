@@ -9,6 +9,8 @@ set(SOURCES
     components/hand.cpp
     components/pin.cpp
     components/tick_marks.cpp
+    time_sources/local_time_source.cpp
+    time_sources/utc_time_source.cpp
     utils/conversions.cpp
     utils/time_point.cpp
 )

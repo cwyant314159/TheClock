@@ -13,10 +13,11 @@ set(SOURCES
     time_sources/utc_time_source.cpp
     utils/conversions.cpp
     utils/time_point.cpp
+    widgets/event_system.cpp
 )
 
 add_executable(${EXE_NAME})
 target_sources(${EXE_NAME} PRIVATE ${SOURCES})
 target_include_directories(${EXE_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_compile_options(${EXE_NAME} PRIVATE -Wall -Wextra)
-target_link_libraries(${EXE_NAME} PRIVATE m raylib)
+target_compile_options(${EXE_NAME} PRIVATE -Wall -Wextra -Og)
+target_link_libraries(${EXE_NAME} PRIVATE m raygui)

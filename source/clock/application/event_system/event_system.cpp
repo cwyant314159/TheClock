@@ -1,4 +1,4 @@
-#include "widgets/event_system.hpp"
+#include "application/event_system/event_system.hpp"
 
 void EventSystem::Enqueue(AppEvent event)
 {

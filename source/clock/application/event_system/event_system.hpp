@@ -6,7 +6,7 @@
 #include <map>
 #include <vector>
 
-#include "widgets/app_event.hpp"
+#include "application/event_system/app_event.hpp"
 
 class EventSystem
 {

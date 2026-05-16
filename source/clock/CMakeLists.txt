@@ -2,6 +2,8 @@ set(EXE_NAME "clock")
 
 set(SOURCES
     main.cpp
+    application/app.cpp
+    application/event_system/event_system.cpp
     clocks/centisecond_clock.cpp
     clocks/compound_clock.cpp
     clocks/simple_clock.cpp
@@ -13,7 +15,6 @@ set(SOURCES
     time_sources/utc_time_source.cpp
     utils/conversions.cpp
     utils/time_point.cpp
-    widgets/event_system.cpp
 )
 
 add_executable(${EXE_NAME})

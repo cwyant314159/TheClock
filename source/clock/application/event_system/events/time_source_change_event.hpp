@@ -1,0 +1,6 @@
+#ifndef TIME_SOURCE_CHANGE_EVENT_HPP
+#define TIME_SOURCE_CHANGE_EVENT_HPP
+
+struct TimeSourceChangeEvent{};
+
+#endif // TIME_SOURCE_CHANGE_EVENT_HPP

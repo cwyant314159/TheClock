@@ -37,7 +37,7 @@ int main(void)
     std::unique_ptr<ISource> pSource = std::make_unique<LocalTimeSource>();
 
     eventSys.Subscribe<DialChangeEvent>([&pClock, &center, &radius](const DialChangeEvent&) {
-        if (typeid(*pClock) == typeid(CompoundClock)) {
+        if (dynamic_cast<CompoundClock*>(pClock.get()) != nullptr) {
             TraceLog(LOG_INFO, "Changing to SimpleClock");
             pClock = std::make_unique<SimpleClock>(center, radius);
         } else {
@@ -56,10 +56,10 @@ int main(void)
     const float padding = 5.0f + GuiGetStyle(BUTTON, TEXT_PADDING) + GuiGetStyle(BUTTON, BORDER_WIDTH);
 
     Rectangle button{
-        .x{width - padding - padding - textBounds.x - 100},
-        .y{padding},
-        .width{padding * 2 + textBounds.x},
-        .height{padding * 2 + textBounds.y}
+        .x = width - padding - padding - textBounds.x - 100,
+        .y = padding,
+        .width = padding * 2 + textBounds.x,
+        .height = padding * 2 + textBounds.y
     };
 
     while (!WindowShouldClose())

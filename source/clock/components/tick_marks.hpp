@@ -1,7 +1,7 @@
 #ifndef TICK_MARKS_HPP
 #define TICK_MARKS_HPP
 
-#include <cstdint>
+#include <cstddef>
 
 extern "C" { 
     #include <raylib.h> 

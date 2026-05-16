@@ -75,7 +75,7 @@ int main(void)
 
             // Toggle the clock type.
             if (GuiButton(button, buttonText)) {
-                eventSys.Enqueue(DialChangeEvent{});
+                eventSys.Enqueue(AppEvent{DialChangeEvent{}});
             }
 
             DrawFPS(5, 5);

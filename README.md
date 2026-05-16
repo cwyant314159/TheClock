@@ -4,10 +4,6 @@ A simple clock application using raylib.
 
 ## Getting Started
 
-### Dependencies
-
-<!-- Dependencies for the different platforms -->
-
 ### Building
 
 This project uses CMake as the build system. A `debug` and `release` preset is

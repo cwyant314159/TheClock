@@ -21,3 +21,8 @@ target_sources(${EXE_NAME} PRIVATE ${SOURCES})
 target_include_directories(${EXE_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_options(${EXE_NAME} PRIVATE -Wall -Wextra -Og)
 target_link_libraries(${EXE_NAME} PRIVATE m raygui)
+
+# Link in 3rd party date library on MacOS for timezone support
+if (APPLE)
+    target_link_libraries(${EXE_NAME} PRIVATE date date-tz)
+endif()
